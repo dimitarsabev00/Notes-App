@@ -53,7 +53,7 @@ const EditNoteForm = () => {
       console.log(formData);
       dispatch(editNote(formData));
       toast("Note edited successfully");
-      setFormData({ noteTitle: "", noteContent: "" });
+      setFormData({ noteId: "", noteTitle: "", noteContent: "", noteDate: "" });
       navigate(-1);
     }
   };
