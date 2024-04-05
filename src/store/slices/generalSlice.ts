@@ -32,5 +32,6 @@ export const generalSlice = createSlice({
   },
 });
 export const { addNewNote } = generalSlice.actions;
+export const getAllNotes = (state) => state.generalSlice.notes;
 
 export default generalSlice.reducer;
