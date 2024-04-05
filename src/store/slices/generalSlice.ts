@@ -26,15 +26,17 @@ export const generalSlice = createSlice({
         noteContent,
         noteDate: new Date().toISOString(),
       };
-      state.notes.push(newPost);
-      storeInLocalStorage("notes", state.notes);
+      const updatedNotes = [...state.notes, newPost];
+      storeInLocalStorage("notes", updatedNotes);
+      return { ...state, notes: updatedNotes };
     },
-    removeNote(state, action) {
+
+    removeNote(state, action: PayloadAction<string>) {
       const tempId = action.payload;
       const tempNotes = state.notes.filter((note) => note.noteId !== tempId);
-      state.notes = tempNotes;
-      storeInLocalStorage("notes", tempNotes);
+      return { ...state, notes: tempNotes };
     },
+
     editNote(state, action) {
       const { noteId, noteTitle, noteContent } = action.payload;
       const tempNotes = state.notes.map((note) => {
@@ -46,12 +48,15 @@ export const generalSlice = createSlice({
         return note;
       });
 
-      state.note = tempNotes;
+      state.notes = tempNotes;
       storeInLocalStorage("notes", tempNotes);
     },
   },
 });
-export const { addNewNote, removeNote,editNote } = generalSlice.actions;
-export const getAllNotes = (state) => state.generalSlice.notes;
+export const { addNewNote, removeNote, editNote } = generalSlice.actions;
+
+export const getAllNotes = (state: {
+  generalSlice: GeneralSliceInitialState;
+}) => state.generalSlice.notes;
 
 export default generalSlice.reducer;
