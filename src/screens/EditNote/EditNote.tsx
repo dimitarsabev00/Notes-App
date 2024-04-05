@@ -1,17 +1,22 @@
 import { ChangeEvent, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAppDispatch } from "../../store/hooks";
-import { addNewNote } from "../../store/slices/generalSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { editNote, getAllNotes } from "../../store/slices/generalSlice";
+import { Note } from "../../Types";
+import "./styles.scss";
 
-const AddNote = () => {
+const EditNoteForm = () => {
+  const { id } = useParams();
   const dispatch = useAppDispatch();
-  const [formData, setFormData] = useState({
-    noteTitle: "",
-    noteContent: "",
-  });
+  const navigate = useNavigate();
+  const notes = useAppSelector(getAllNotes);
+  let tempNote = notes.filter((note: Note) => note.noteId === id);
+
+  const [formData, setFormData] = useState(tempNote[0]);
   const [titleError, setTitleError] = useState(false);
   const [contentError, setContentError] = useState(false);
-  const [canSave, setCanSave] = useState(false);
+  const [canSave, setCanSave] = useState(true);
 
   const onFormDataChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -35,7 +40,7 @@ const AddNote = () => {
       }
     }
 
-    setFormData((prevData) => {
+    setFormData((prevData: any) => {
       return {
         ...prevData,
         [event.target.name]: event.target.value,
@@ -45,16 +50,18 @@ const AddNote = () => {
 
   const onSaveNoteClicked = () => {
     if (!titleError && !contentError) {
-      dispatch(addNewNote(formData));
-      toast("New Note added successfully");
+      console.log(formData);
+      dispatch(editNote(formData));
+      toast("Note edited successfully");
       setFormData({ noteTitle: "", noteContent: "" });
+      navigate(-1);
     }
   };
 
   return (
     <div>
       <section className="note-form-section">
-        <h2 className="my-4 fs-16">Add New Note</h2>
+        <h2 className="my-4 fs-16">Edit Note</h2>
         <form className="note-form">
           <div className="form-element">
             <label htmlFor="noteTitle" className="form-label">
@@ -106,4 +113,4 @@ const AddNote = () => {
   );
 };
 
-export default AddNote;
+export default EditNoteForm;

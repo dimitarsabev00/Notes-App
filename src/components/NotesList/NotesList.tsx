@@ -43,7 +43,7 @@ const NotesList: React.FC<NotesListProps> = ({ notes }) => {
                   >
                     <ImCancelCircle />
                   </button>
-                  <Link to={`/edit/${note.noteId}`} className="notes-item-btn">
+                  <Link to={`/note/edit/${note.noteId}`} className="notes-item-btn">
                     <FiEdit />
                   </Link>
                 </div>
