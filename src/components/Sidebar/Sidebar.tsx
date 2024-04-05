@@ -1,17 +1,27 @@
 import notesIcon from "../../assets/icons/notes_icon.png";
 import { AiFillHome } from "react-icons/ai";
 import { BsPlusLg } from "react-icons/bs";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./styles.scss";
+import { useEffect } from "react";
 
 const Sidebar = () => {
   const location = useLocation();
   let pathname = location.pathname.replace("/", "");
-
+  const navigate = useNavigate();
+  useEffect(() => {
+    let pathnameInUseEff = location.pathname;
+    if (pathnameInUseEff === "/") {
+      navigate("/notes");
+    }
+  }, []);
   return (
     <div className="app-sidebar">
       <div className="sidebar-content py-3 flex flex-column">
-        <Link to="/" className="app-brand flex align-center justify-center">
+        <Link
+          to="/notes"
+          className="app-brand flex align-center justify-center"
+        >
           <img src={notesIcon} alt="" />
         </Link>
 
