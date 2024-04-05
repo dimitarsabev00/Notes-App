@@ -4,12 +4,16 @@ import { FiEdit } from "react-icons/fi";
 import { parseISO, formatDistanceToNow } from "date-fns";
 import { Link } from "react-router-dom";
 import { Note } from "../../Types";
+import { useAppDispatch } from "../../store/hooks";
 import "./styles.scss";
+import { removeNote } from "../../store/slices/generalSlice";
 
 type NotesListProps = {
   notes: Note[];
 };
 const NotesList: React.FC<NotesListProps> = ({ notes }) => {
+  const dispatch = useAppDispatch();
+
   if (!notes || notes.length === 0) {
     return <div className="not-found">No any notes found</div>;
   }
@@ -32,7 +36,11 @@ const NotesList: React.FC<NotesListProps> = ({ notes }) => {
               </div>
               <div className="notes-item-btns flex align-center justify-between">
                 <div>
-                  <button type="button" className="notes-item-btn">
+                  <button
+                    type="button"
+                    className="notes-item-btn"
+                    onClick={() => dispatch(removeNote(note.noteId))}
+                  >
                     <ImCancelCircle />
                   </button>
                   <Link to={`/edit/${note.noteId}`} className="notes-item-btn">

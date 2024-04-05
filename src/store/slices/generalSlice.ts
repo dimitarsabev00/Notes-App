@@ -29,9 +29,15 @@ export const generalSlice = createSlice({
       state.notes.push(newPost);
       storeInLocalStorage("notes", state.notes);
     },
+    removeNote(state, action){
+      const tempId = action.payload;
+      const tempNotes = state.notes.filter(note => note.noteId !== tempId);
+      state.notes = tempNotes;
+      storeInLocalStorage('notes', tempNotes);
+  },
   },
 });
-export const { addNewNote } = generalSlice.actions;
+export const { addNewNote,removeNote } = generalSlice.actions;
 export const getAllNotes = (state) => state.generalSlice.notes;
 
 export default generalSlice.reducer;
