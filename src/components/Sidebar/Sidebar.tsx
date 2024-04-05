@@ -1,8 +1,6 @@
-import React from "react";
-import notes_icon from "../../assets/icons/notes_icon.png";
+import notesIcon from "../../assets/icons/notes_icon.png";
 import { AiFillHome } from "react-icons/ai";
 import { BsPlusLg } from "react-icons/bs";
-import { MdNoteAlt } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import "./styles.scss";
 
@@ -14,14 +12,14 @@ const Sidebar = () => {
     <div className="app-sidebar">
       <div className="sidebar-content py-3 flex flex-column">
         <Link to="/" className="app-brand flex align-center justify-center">
-          <img src={notes_icon} alt="" />
+          <img src={notesIcon} alt="" />
         </Link>
 
         <ul className="links my-4">
           <Link
             to="/"
             className={`text-white flex justify-center align-center link-item ${
-              pathname === "/" ? "active-link" : ""
+              pathname === "" ? "active-link" : ""
             }`}
           >
             <span className="flex align-center justify-center">
@@ -30,7 +28,7 @@ const Sidebar = () => {
             <span className="icon-text">Home</span>
           </Link>
           <Link
-            to="/add"
+            to="/note/add"
             className={`text-white flex justify-center align-center link-item ${
               pathname === "add" ? "active-link" : ""
             }`}
