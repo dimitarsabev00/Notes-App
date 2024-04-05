@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./styles.scss";
 import { Sidebar } from "../../components";
+import { Outlet } from "react-router-dom";
 
 const Home = () => {
   const [greetText, setGreetText] = useState("");
@@ -33,7 +34,7 @@ const Home = () => {
           </div>
         </header>
         <div className="notes-wrapper py-4 px-4">
-          {/* Added Content HERE!!! */}
+          <Outlet />
         </div>
       </div>
     </div>
