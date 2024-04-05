@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./screens/Home/Home";
+import { AddNote, Home } from "./screens";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />}>
+          <Route path="/note/add" element={<AddNote />} />
+        </Route>
       </Routes>
     </Router>
   );
