@@ -17,9 +17,9 @@ const Sidebar = () => {
 
         <ul className="links my-4">
           <Link
-            to="/"
+            to="/notes"
             className={`text-white flex justify-center align-center link-item ${
-              pathname === "" ? "active-link" : ""
+              pathname === "/notes" ? "active-link" : ""
             }`}
           >
             <span className="flex align-center justify-center">
