@@ -1,6 +1,6 @@
 # Notes-App
 
-### Open Project - [https://notes-app.vercel.app/](https://notes-app.vercel.app/)
+### Open Project - [https://notes-app-a.vercel.app/](https://notes-app-a.vercel.app/)
 
 ## Available Scripts
 
