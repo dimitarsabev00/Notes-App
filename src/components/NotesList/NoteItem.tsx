@@ -6,6 +6,7 @@ import { removeNote } from "../../store/slices/generalSlice"
 import { ImCancelCircle } from "react-icons/im"
 import { Link, useNavigate } from "react-router-dom"
 import { FiEdit } from "react-icons/fi"
+import { toast } from "react-toastify"
 
 type NoteItemProps = {
   note: Note
@@ -20,6 +21,11 @@ const NoteItem: React.FC<NoteItemProps> = ({ note }) => {
     navigate(`/note/${note.noteId}`)
   }
 
+  const handleRemoveNote = () => {
+    dispatch(removeNote(note.noteId))
+    toast("Remove Note successfully");
+  }
+  
   return (
     <div className="notes-item" key={note.noteId} onClick={handleContainerClick}>
       <div className="notes-item-title">
@@ -36,7 +42,7 @@ const NoteItem: React.FC<NoteItemProps> = ({ note }) => {
           <button
             type="button"
             className="notes-item-btn"
-            onClick={() => dispatch(removeNote(note.noteId))}
+            onClick={handleRemoveNote}
           >
             <ImCancelCircle />
           </button>
