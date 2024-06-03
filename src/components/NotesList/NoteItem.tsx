@@ -27,7 +27,7 @@ const NoteItem: React.FC<NoteItemProps> = ({ note }) => {
   }
   
   return (
-    <div className="notes-item" key={note.noteId} onClick={handleContainerClick}>
+    <div className="notes-item" onClick={handleContainerClick}>
       <div className="notes-item-title">
         {note.noteTitle.substring(0, 80) + "..."}
       </div>

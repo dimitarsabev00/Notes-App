@@ -17,7 +17,7 @@ const NotesList: React.FC<NotesListProps> = ({ notes }) => {
       <h5 className="fs-18 fw-8 text-uppercase notes-title">notes</h5>
       <div className="notes-list grid">
         {notes.map((note) => (
-          <NoteItem note={note} />
+          <NoteItem key={note.noteId} note={note} />
         ))}
       </div>
     </div>
