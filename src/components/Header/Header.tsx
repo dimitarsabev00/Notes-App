@@ -3,14 +3,15 @@ import "./styles.scss"
 
 const Header = () => {
   const [greetText, setGreetText] = useState("")
-  const [locale, setLocale] = useState("")
+  const [locale, setLocale] = useState("en-US")
 
   useEffect(() => {
     const fetchLocale = async () => {
       try {
         const response = await fetch("https://ipapi.co/json/")
         const data = await response.json()
-        setLocale(data.country_code === "BG" ? "bg-BG" : data.country_code)
+        const fetchedLocale = data.country_code === "BG" ? "bg-BG" : "en-US"
+        setLocale(fetchedLocale)
       } catch (error) {
         console.error("Error fetching locale:", error)
       }
@@ -29,12 +30,24 @@ const Header = () => {
   }, [locale])
 
   const currentDate = new Date()
-  const date = currentDate.toLocaleDateString(locale, {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  })
+  let date
+
+  try {
+    date = currentDate.toLocaleDateString(locale, {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    })
+  } catch (error) {
+    console.error("Error formatting date with locale:", error)
+    date = currentDate.toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    })
+  }
 
   return (
     <header className="header w-100 flex align-center">
