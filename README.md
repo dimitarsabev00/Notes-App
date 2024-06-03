@@ -1,6 +1,6 @@
-# Notes App
+### Notes App
 
-## Overview
+### Overview
 
 The Notes App is a web application that allows users to create, view, edit, and delete notes. This app is built with modern web technologies and is designed to be fast, responsive, and easy to use.
 
@@ -8,7 +8,7 @@ The Notes App is a web application that allows users to create, view, edit, and 
 
 You can access the live demo of the project [here](https://notes-app-a.vercel.app/).
 
-## Setup Instructions
+### Setup Instructions
 
 ### Prerequisites
 
