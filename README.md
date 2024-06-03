@@ -70,7 +70,7 @@ In the project directory, you can run:
 
 npm run dev
 Runs the app in development mode.
-Open http://localhost:5373 to view it in your browser.
+Open http://localhost:5173 to view it in your browser.
 
 ```bash
 npm run build
@@ -106,7 +106,3 @@ Contributions are welcome! Please open an issue or submit a pull request.
 ### License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
-
-```
-
-```
