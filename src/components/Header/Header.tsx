@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "./styles.scss"
 
-const Header = () => {
+const Header: React.FC = () => {
   const [greetText, setGreetText] = useState("")
   const [locale, setLocale] = useState("en-US")
 
